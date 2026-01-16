@@ -29,7 +29,8 @@ El objetivo del proyecto es practicar la creación de interfaces gráficas (GUI)
 ```
 text_editor/
 │
-├─ main.py 
+├─ main.py
+├─ editor_de_texto_app.py 
 ├─ README.md
 ```
 
