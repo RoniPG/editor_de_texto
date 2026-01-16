@@ -1,0 +1,26 @@
+# Entornos
+.env
+.venv
+venv/
+env/
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Conda
+*.conda
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del editor
+.vscode/
