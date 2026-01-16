@@ -6,4 +6,6 @@ class EditorDeTextoApp(tk.Tk):
         self.title("Editor de Texto")
         self.geometry("800x600")
 
-    
+        # Etiqueta de bienvenida
+        etiqueta = tk.Label(self, text="Bienvenido a tu editor de texto")
+        etiqueta.pack(pady=20)
