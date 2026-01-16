@@ -45,6 +45,13 @@ class EditorDeTextoApp(tk.Tk):
         scrollbar_vertical.config(command=self.texto.yview)
         scrollbar_horizontal.config(command=self.texto.xview)
 
+        # Barra de estado
+        self.estado = ttk.Label(self, text="Nuevo documento", anchor=tk.W)
+        self.estado.pack(fill=tk.X, side=tk.BOTTOM)
+
+        # Actualizar recuento al escribir
+        self.texto.bind("<KeyRelease>", self._actualizar_estado_conteo)
+
     def _crear_menu(self) -> None:
         """Crea la barra de menú del editor de texto."""
         # Crear la barra de menú
@@ -189,3 +196,10 @@ class EditorDeTextoApp(tk.Tk):
         self.texto.tag_add(tk.SEL, "1.0", tk.END)
         self.texto.mark_set(tk.INSERT, "1.0")
         self.texto.see(tk.INSERT)
+
+
+    def _actualizar_estado_conteo(self, event=None) -> None:
+        contenido = self.texto.get("1.0", tk.END)
+        lineas = int(self.texto.index("end-1c").split(".")[0])
+        caracteres = len(contenido.rstrip("\n"))
+        self.estado.config(text=f"Líneas: {lineas} | Caracteres: {caracteres}")
