@@ -1,12 +1,11 @@
-import tkinter as tk
+from editor_de_texto_app import EditorDeTextoApp
 
 
-def main():
-    root = tk.Tk()
-    root.title("Editor de Texto")
-    root.geometry("800x600")
-    root.mainloop()
+def main() -> None:
+    app = EditorDeTextoApp()
+    app.mainloop()
 
 
 if __name__ == "__main__":
     main()
+    
