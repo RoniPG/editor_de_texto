@@ -69,6 +69,20 @@ class EditorDeTextoApp(tk.Tk):
         )
         # Agregamos el menú Archivo a la barra de menú
         menu_barra.add_cascade(label="Archivo", menu=menu_archivo)
+
+        # Menu de edición
+        menu_edicion = tk.Menu(menu_barra, tearoff=0)
+        menu_edicion.add_command(label="Deshacer", accelerator="Ctrl+Z", command=lambda: self._accion_texto("undo"))
+        menu_edicion.add_command(label="Rehacer", accelerator="Ctrl+Y", command=lambda: self._accion_texto("redo"))
+        menu_edicion.add_separator()
+        menu_edicion.add_command(label="Cortar", accelerator="Ctrl+X", command=lambda: self._accion_texto("Cut"))
+        menu_edicion.add_command(label="Copiar", accelerator="Ctrl+C", command=lambda: self._accion_texto("Copy"))
+        menu_edicion.add_command(label="Pegar", accelerator="Ctrl+V", command=lambda: self._accion_texto("Paste"))
+        menu_edicion.add_command(label="Seleccionar todo", accelerator="Ctrl+A", command=self._seleccionar_todo)
+
+        # Agregamos el menú Edición a la barra de menú
+        menu_barra.add_cascade(label="Edición", menu=menu_edicion)
+
         self.config(menu=menu_barra)
         # Atajos de teclado para las opciones del menú
         self.bind("<Control-n>", lambda event: self.nuevo_archivo())
@@ -165,4 +179,13 @@ class EditorDeTextoApp(tk.Tk):
                 self.guardar_archivo()
         return True
 
+    def _accion_texto(self, accion: str) -> None:
+        try:
+            self.texto.event_generate(f"<<{accion}>>")
+        except Exception:
+            pass
 
+    def _seleccionar_todo(self) -> None:
+        self.texto.tag_add(tk.SEL, "1.0", tk.END)
+        self.texto.mark_set(tk.INSERT, "1.0")
+        self.texto.see(tk.INSERT)
