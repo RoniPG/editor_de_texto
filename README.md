@@ -44,7 +44,7 @@ text_editor/
 1. 1  (Opcional) Crear un entorno virtual con conda
 
    ```
-    conda create -n  python=3.11
+    conda create -n escritura_veloz_env python=3.11
     conda activate escritura_veloz_env
    ```
 
